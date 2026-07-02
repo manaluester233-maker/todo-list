@@ -6,43 +6,48 @@ const total = document.getElementById("total");
 let jumlah = 0;
 
 button.addEventListener("click", function () {
-    if (input.value.trim() === "") return;
+    const text = input.value.trim();
+
+    if (text === "") return;
 
     const li = document.createElement("li");
-    li.textContent = input.value;
 
-    li.addEventListener("click", function () {
-        li.style.textDecoration = "line-through";
-        li.style.color = "gray";
-    });
+    const span = document.createElement("span");
+    span.textContent = text;
+
     const edit = document.createElement("button");
-edit.textContent = "Edit";
-edit.style.marginLeft = "10px";
-
-edit.addEventListener("click", function () {
-    const tugasBaru = prompt("Edit tugas:", li.firstChild.textContent);
-
-    if (tugasBaru !== null && tugasBaru.trim() !== "") {
-        li.firstChild.textContent = tugasBaru;
-    }
-});
+    edit.textContent = "Edit";
 
     const hapus = document.createElement("button");
     hapus.textContent = "Hapus";
-    hapus.style.marginLeft = "10px";
 
-    hapus.addEventListener("click", function () {
-        li.remove();
-        jumlah--;
-        total.textContent = jumlah;
-    });
-
+    li.appendChild(span);
     li.appendChild(edit);
-li.appendChild(hapus);
+    li.appendChild(hapus);
+
     list.appendChild(li);
 
     jumlah++;
     total.textContent = jumlah;
 
     input.value = "";
+
+    span.addEventListener("click", function () {
+        span.style.textDecoration = "line-through";
+        span.style.color = "gray";
+    });
+
+    edit.addEventListener("click", function () {
+        const baru = prompt("Edit tugas:", span.textContent);
+
+        if (baru && baru.trim() !== "") {
+            span.textContent = baru;
+        }
+    });
+
+    hapus.addEventListener("click", function () {
+        li.remove();
+        jumlah--;
+        total.textContent = jumlah;
+    });
 });
