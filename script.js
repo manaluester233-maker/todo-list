@@ -39,6 +39,7 @@ edit.addEventListener("click", function () {
 
     li.appendChild(edit);
 li.appendChild(hapus);
+    list.appendChild(li);
 
     jumlah++;
     total.textContent = jumlah;
