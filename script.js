@@ -15,6 +15,17 @@ button.addEventListener("click", function () {
         li.style.textDecoration = "line-through";
         li.style.color = "gray";
     });
+    const edit = document.createElement("button");
+edit.textContent = "Edit";
+edit.style.marginLeft = "10px";
+
+edit.addEventListener("click", function () {
+    const tugasBaru = prompt("Edit tugas:", li.firstChild.textContent);
+
+    if (tugasBaru !== null && tugasBaru.trim() !== "") {
+        li.firstChild.textContent = tugasBaru;
+    }
+});
 
     const hapus = document.createElement("button");
     hapus.textContent = "Hapus";
@@ -26,8 +37,8 @@ button.addEventListener("click", function () {
         total.textContent = jumlah;
     });
 
-    li.appendChild(hapus);
-    list.appendChild(li);
+    li.appendChild(edit);
+li.appendChild(hapus);
 
     jumlah++;
     total.textContent = jumlah;
